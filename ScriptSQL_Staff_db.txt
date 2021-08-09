@@ -1,0 +1,81 @@
+create database Staff_db;
+use Staff_db;
+--	Аунтификация пользователей в ПО
+CREATE TABLE auth_user
+(id INT PRIMARY KEY IDENTITY NOT NULL,
+users NVARCHAR(50) NOT NULL,
+password NVARCHAR(50) NOT NULL);
+
+INSERT INTO auth_user (users, password) VALUES (N'Administrator',N'admin'),(N'Специолист отдела кадров',N'12345');
+-- Отдел
+CREATE TABLE otdel
+(id_otdel INT PRIMARY KEY IDENTITY NOT NULL,
+otdel_name NVARCHAR(100) NOT NULL);
+
+INSERT INTO otdel(otdel_name) VALUES (N'Отдел материально-технического снабжения'), (N'Производственно-диспетчерский отдел'),
+(N'Отдел главного энергетика'), (N'Транспортный цех'), (N'Отдел главного конструктора'), (N'Производственный цех'),
+(N'Ремонтно-строительный цех'), (N'Энергоцех'), (N'Ремонтно-механический цех');
+
+-- Пост
+CREATE TABLE post 
+(id_post INT PRIMARY KEY IDENTITY NOT NULL,
+post_name NVARCHAR(100) NOT NULL,
+id_otdel INT NOT NULL);
+
+ALTER TABLE post ADD CONSTRAINT FK_Post_to_Otdel FOREIGN KEY (id_otdel) REFERENCES otdel(id_otdel);
+
+INSERT INTO post (id_otdel,post_name) VALUES ((select otdel.id_otdel FROM otdel WHERE otdel.otdel_name LIKE N'Энергоцех'), N'Начальник энергоцеха');
+INSERT INTO post (id_otdel,post_name) VALUES ((select otdel.id_otdel FROM otdel WHERE otdel.otdel_name LIKE N'Энергоцех'), N'Энергетик');
+INSERT INTO post (id_otdel,post_name) VALUES ((select otdel.id_otdel FROM otdel WHERE otdel.otdel_name LIKE N'Энергоцех'), N'Электрик');
+INSERT INTO post (id_otdel,post_name) VALUES ((select otdel.id_otdel FROM otdel WHERE otdel.otdel_name LIKE N'Транспортный цех'), N'Начальник транспортного цеха');
+INSERT INTO post (id_otdel,post_name) VALUES ((select otdel.id_otdel FROM otdel WHERE otdel.otdel_name LIKE N'Транспортный цех'), N'Механик');
+INSERT INTO post (id_otdel,post_name) VALUES ((select otdel.id_otdel FROM otdel WHERE otdel.otdel_name LIKE N'Транспортный цех'), N'Водитель категории B');
+INSERT INTO post (id_otdel,post_name) VALUES ((select otdel.id_otdel FROM otdel WHERE otdel.otdel_name LIKE N'Транспортный цех'), N'Водитель категории С');
+INSERT INTO post (id_otdel,post_name) VALUES ((select otdel.id_otdel FROM otdel WHERE otdel.otdel_name LIKE N'Отдел материально-технического снабжения'), N'Начальник материально-технического снабжения');
+INSERT INTO post (id_otdel,post_name) VALUES ((select otdel.id_otdel FROM otdel WHERE otdel.otdel_name LIKE N'Отдел материально-технического снабжения'), N'Заместитель материально-технического снабжения');
+INSERT INTO post (id_otdel,post_name) VALUES ((select otdel.id_otdel FROM otdel WHERE otdel.otdel_name LIKE N'Отдел материально-технического снабжения'), N'Специолист материально-технического снабжения');
+INSERT INTO post (id_otdel,post_name) VALUES ((select otdel.id_otdel FROM otdel WHERE otdel.otdel_name LIKE N'Производственно-диспетчерский отдел'), N'Диспетчер');
+INSERT INTO post (id_otdel,post_name) VALUES ((select otdel.id_otdel FROM otdel WHERE otdel.otdel_name LIKE N'Производственно-диспетчерский отдел'), N'Начальник производственно-диспедчерского отдела');
+INSERT INTO post (id_otdel,post_name) VALUES ((select otdel.id_otdel FROM otdel WHERE otdel.otdel_name LIKE N'Отдел главного энергетика'), N'Главный энергетик');
+INSERT INTO post (id_otdel,post_name) VALUES ((select otdel.id_otdel FROM otdel WHERE otdel.otdel_name LIKE N'Отдел главного энергетика'), N'Заместитель главного энергетика');
+INSERT INTO post (id_otdel,post_name) VALUES ((select otdel.id_otdel FROM otdel WHERE otdel.otdel_name LIKE N'Отдел главного энергетика'), N'Инженер электроник');
+INSERT INTO post (id_otdel,post_name) VALUES ((select otdel.id_otdel FROM otdel WHERE otdel.otdel_name LIKE N'Отдел главного конструктора'), N'Конструктор');
+INSERT INTO post (id_otdel,post_name) VALUES ((select otdel.id_otdel FROM otdel WHERE otdel.otdel_name LIKE N'Отдел главного конструктора'), N'Начальик конструкторского отдела');
+INSERT INTO post (id_otdel,post_name) VALUES ((select otdel.id_otdel FROM otdel WHERE otdel.otdel_name LIKE N'Производственный цех'), N'Начальник цеха');
+INSERT INTO post (id_otdel,post_name) VALUES ((select otdel.id_otdel FROM otdel WHERE otdel.otdel_name LIKE N'Производственный цех'), N'Мастер');
+INSERT INTO post (id_otdel,post_name) VALUES ((select otdel.id_otdel FROM otdel WHERE otdel.otdel_name LIKE N'Ремонтно-строительный цех'), N'Начальник РСЦ');
+INSERT INTO post (id_otdel,post_name) VALUES ((select otdel.id_otdel FROM otdel WHERE otdel.otdel_name LIKE N'Ремонтно-строительный цех'), N'Слесарь');
+INSERT INTO post (id_otdel,post_name) VALUES ((select otdel.id_otdel FROM otdel WHERE otdel.otdel_name LIKE N'Ремонтно-механический цех'), N'Начальник РМЦ');
+INSERT INTO post (id_otdel,post_name) VALUES ((select otdel.id_otdel FROM otdel WHERE otdel.otdel_name LIKE N'Ремонтно-механический цех'), N'Заместитель начальника РМЦ');
+INSERT INTO post (id_otdel,post_name) VALUES ((select otdel.id_otdel FROM otdel WHERE otdel.otdel_name LIKE N'Ремонтно-механический цех'), N'Слесарь');
+
+--	Сотрудники
+CREATE TABLE person 
+(id_user INT PRIMARY KEY IDENTITY NOT NULL,	--	ID
+l_name NVARCHAR(100) NOT NULL,				--	Фамилия
+f_name NVARCHAR(100) NOT NULL,				--	Имя
+s_name NVARCHAR(100),						--	Отчество
+is_working bit NOT NULL DEFAULT 1,			--	Логическая ед. работает сотрудник или нет.
+post_id INT NOT NULL,						--	Должность
+start_work Date NOT NULL,					--	Начало работы
+end_work Date NULL,							--	Конец (контракта договора)
+fired_date Date NULL);						--	Дата увольнения
+
+--	Таблица для сохранения изменений сотрудников
+CREATE TABLE old_person 
+(id_user INT PRIMARY KEY IDENTITY NOT NULL,	--	ID
+tab_name INT,								--	ID сотрудника таблицы person
+l_name NVARCHAR(100) NOT NULL,				--	Фамилия
+f_name NVARCHAR(100) NOT NULL,				--	Имя
+s_name NVARCHAR(100),						--	Отчество
+is_working bit NULL,						--	Логическая ед. работает сотрудник или нет.
+post_id INT NOT NULL,						--	Должность
+start_work Date NOT NULL,					--	Начало работы
+end_work Date NULL,							--	Конец (контракта договора)
+fired_date Date NULL);						--	Дата увольнения
+
+ALTER TABLE person ADD CONSTRAINT FK_Person_to_Post FOREIGN KEY (post_id) REFERENCES post(id_post);
+
+INSERT INTO person(l_name, f_name, s_name, post_id, start_work, end_work) VALUES (N'Иванов', N'Иван', N'Иванович', 1, (SELECT GETDATE()), DATEADD(YEAR, 2, GETDATE()));
+INSERT INTO person(l_name, f_name, s_name, post_id, start_work, end_work) VALUES (N'Сидоров', N'Иван', N'Иванович', 1, (SELECT GETDATE()), DATEADD(YEAR, 2, GETDATE()));
+INSERT INTO person(l_name, f_name, s_name, post_id, start_work, end_work) VALUES (N'Петров', N'Иван', N'Иванович', 1, (SELECT GETDATE()), DATEADD(YEAR, 2, GETDATE()));
