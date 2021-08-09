@@ -1,0 +1,34 @@
+﻿<Window x:Class="Staff.WChart"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Staff" 
+        xmlns:dvc="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
+        mc:Ignorable="d"
+        Icon="Images\Icon.png"
+        WindowStartupLocation="CenterScreen"
+        Title="Диограмма" Height="400" Width="1000">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="1" >
+            <DatePicker Text="01.01.2021" CalendarOpened="datePicker_CalendarOpened" x:Name="datePicker" Margin="10 5"/>
+            <Button Content="Отобразить график" Height="50"  Margin="10 5" Click="Button_Click" />
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="1">
+            <WindowsFormsHost>
+                <dvc:Chart x:Name="chart" Width="400" Height="250"/>
+            </WindowsFormsHost>
+        </StackPanel>
+        <TextBlock x:Name="textBoxNameWindow" Text="Диаграмма уволенных сотрудников за год" Grid.ColumnSpan="2" FontSize="25" Margin="10" FontFamily="Segoe UI"/>
+    </Grid>
+</Window>
+    

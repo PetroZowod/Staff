@@ -1,0 +1,29 @@
+﻿<Window x:Class="Staff.WListContractBeforeDate"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Staff"
+        Icon="Images\Icon.png"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Поиск сотрудников по дате окончания договора(контракта)" Height="450" Width="800">
+    <Grid x:Name="grid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="7*"/>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="textBoxNameWindow" Text="Поиск сотрудников по дате окончания договора(контракта)" Grid.ColumnSpan="2" FontSize="25" Margin="10" FontFamily="Segoe UI"/>
+        <StackPanel Grid.Row="1">
+            <DatePicker Text="01.01.2022" x:Name="datePicker" Margin="10 5"/>
+            <Button Content="Отобразить список" Height="50"  Margin="10 5" Click="Button_Click" />
+        </StackPanel>
+        <ScrollViewer Grid.Column="1" Grid.Row="1">
+            <ListBox x:Name="listbox" ItemsSource="{Binding}"/>
+        </ScrollViewer>
+    </Grid>
+</Window>
