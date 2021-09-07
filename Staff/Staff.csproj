@@ -119,9 +119,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Icon%28old%29.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\Icon.png" />
   </ItemGroup>
   <ItemGroup>
@@ -157,6 +154,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SQL_scripts.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
